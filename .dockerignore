@@ -3,7 +3,6 @@
 .gitignore
 .cache
 
-
 # ignore all markdown files (md) beside all README*.md other than README-secret.md
 *.md
 !README*.md
@@ -11,7 +10,7 @@ README-secret.md
 
 .dockerignore
 Dockerfile
-docker-compose.yml
+docker*.yml
 
 **/.DS_Store
 .DS_Store
@@ -28,6 +27,7 @@ pids
 *.pid.lock
 
 # Stores VSCode versions used for testing VSCode extensions
+.npm
 .vscode-test
 .vscode
 .vscode/*

@@ -1,14 +1,13 @@
-FROM mongo:latest
+FROM mongo:8.0.1
 
-RUN echo '+++++++Docker mongo:latest version start runing ... ++++++++'
+RUN echo '++++++++ Hello Dockerfile !!! ++++++++'
+RUN echo '++++++++ mongo:8.0.1 version start runing ... ++++++++'
 
 RUN apt-get -y update && \
     apt-get -y install vim && \
     apt-get install -y curl && \
     apt-get install -y iputils-ping
-# Set the working directory
-WORKDIR /usr/app
-COPY ./ ./
+
 # RUN apk update && \
 #     add vim && \
 #     add curl \
