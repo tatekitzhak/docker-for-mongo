@@ -1,21 +1,24 @@
-
 services:
   mongodb:
-    env_file:
-      - mongodb.env
     build: 
       context: .
       dockerfile: Dockerfile
-    container_name: mongo_server
-    
-    # hostname: 'mongo'
-    domainname: 'example.com'
-    restart: 'always'
+
+    container_name: mongodb
     ports:
-      - 17017:27017
-    # environment:
-    # - 'MONGO_INITDB_ROOT_USERNAME=root'
-    # - 'MONGO_INITDB_ROOT_PASSWORD=example'
-    # volumes:
-    # - 'mongo_data:/data/db'
-    
+      - '27017:27017'
+    volumes:
+      - /usr/app:/data/db
+    restart: always
+  #   networks:
+  #     - db-networks
+  #     - mongo-tsapp-network 
+  #   environment:
+  #     MONGO_USERNAME: root
+  #     MONGO_PASSWORD: rootpassword
+  # networks:
+  #   mongo-tsapp-network:
+  #     external: true
+
+  # networks:
+  #   mongo-tsapp-network:

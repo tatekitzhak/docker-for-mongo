@@ -13,7 +13,7 @@
 - `docker run -d --name mongodb -p 27017:27017 mongo `
 - `docker ps`
 ### Connect the MongoDB to the Docker Container
-- `docker exec -it [container-Id] sh`
+- `docker exec -it [CONTAINER_NAME_or_ID] sh`
 Validate the MongoDB Command is Running
 - `db.runCommand({hello:1})`
 This should yield the below output.
@@ -41,5 +41,16 @@ This should yield the below output.
 - `mongosh`
 - create a new database by `use blog`
 - Enter `exit`
-- `mongorestore --host "127.0.0.1" --port 27017 ./blog`
+- `mongorestore --host "127.0.0.1" --port 27017 --db blog ./blog`
 - `mongosh`
+
+docker run -d \
+  -p 27027:27017 \
+  --name mongo_v3 \
+  -v /Users/ran/git_repo/docker_repo/mongodb/db_v1:/data/db \
+  mongo_v1
+
+docker container run -d 
+  --name container_name 
+  --network network_name 
+  image_name 

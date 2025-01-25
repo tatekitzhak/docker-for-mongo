@@ -1,0 +1,61 @@
+services: 
+###
+# MONGO configuration
+###
+  mongo_db:
+    build: 
+      context: ./db
+      dockerfile: Dockerfile
+    container_name: mongodb
+    ports:
+      - '27027:27017'
+    volumes:
+      - /usr/app:/data/db
+    restart: always
+    # networks:
+    #   - db_networks
+
+###
+# API SERVER configuration
+###
+  ts_blog_api_server:
+    build: 
+      context: ./typescript-blog-webapp
+      dockerfile: Dockerfile
+    container_name: api_web_app
+    env_file: 
+    - path: ./typescript-blog-webapp/.env
+      required: true # default
+    ports:
+      - "3000:3000"
+    # networks:
+    #   - db_networks
+    #   - frontend_network
+    # volumes:
+    #   - .:/code
+    depends_on:
+      - mongo_db
+    restart: always
+###
+# FRONTEND configuration
+###
+
+#   frontend:
+#     build: 
+#       context: ./frontend
+#       dockerfile: Dockerfile
+#     networks: 
+#       - app_network
+
+###
+# enable persistence of database data across container restart
+###
+volumes: 
+  mongo_db: {}
+
+###
+# allow services to talk to each other while providing isolation from other docker container, running on the same host
+###
+# networks:
+#   - db_networks
+#   - frontend_network

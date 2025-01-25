@@ -11,6 +11,7 @@ README-secret.md
 .dockerignore
 Dockerfile
 docker*.yml
+mongodb.env
 
 **/.DS_Store
 .DS_Store
